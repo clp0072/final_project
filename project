@@ -1,0 +1,161 @@
+#include<iostream> 
+#include <iomanip>
+#include <string>
+#include <vector>
+using namespace std;
+
+// checks to see if email is valid
+bool isChar(char c)
+{
+    return ((c >= 'a' && c <= 'z')
+            || (c >= 'A' && c <= 'Z'));
+}
+bool isDigit(const char c)
+{
+    return (c >= '0' && c <= '9');
+}
+bool is_valid(string email)
+{
+    if (!isChar(email[0])) {
+        return 0;
+    }
+    int At = -1, Dot = -1;
+    for (int i = 0;
+         i < email.length(); i++) {
+        if (email[i] == '@') {
+            At = i;
+        }
+        else if (email[i] == '.') {
+            Dot = i;
+        }
+    }
+    if (At == -1 || Dot == -1)
+        return 0;
+    if (At > Dot)
+        return 0;
+    return !(Dot >= (email.length() - 1));
+} //end of email check
+
+
+void createAccount() {
+    string username, email, password;
+    cout << "\n--Account Creation--" << endl;
+    cout << "Enter a username: " << endl;
+    cin >> username;
+    cout << "Enter an email address: " << endl;
+    cin >> email;
+    bool ans = is_valid(email);
+    while (ans == false) {
+        cout << "That email is invalid. Please enter a valid email address." << endl;
+        cin >> email;
+        ans = is_valid(email);
+    } 
+    cout << "Create a password: " << endl;
+    cin >> password;
+    cout << "Account has been created.";
+
+}
+void viewMenu(){
+    cout << "\n----Menu----" << endl
+    << "[1] $5 Cheeseburger" << endl
+    << "[2] $2 Hot Dog" << endl
+    << "[3] $4 Pizza Slice" << endl
+    << "[4] $2 Popcorn" << endl
+    << "[5] $2 French Fries" << endl
+    << "[6] $1 Bottle of Water" << endl
+    << "[7] $2 Coca-Cola" << endl;
+}
+
+int placeOrder(){
+    int itemNumber = 0;
+    int cost = 0;
+    while(itemNumber != 8){
+    cout << "Enter an item number to add to your order." << endl
+    << "[1] $5 Cheeseburger" << endl
+    << "[2] $2 Hot Dog" << endl
+    << "[3] $4 Pizza Slice" << endl
+    << "[4] $2 Popcorn" << endl
+    << "[5] $2 French Fries" << endl
+    << "[6] $1 Bottle of Water" << endl
+    << "[7] $2 Coca-Cola" << endl
+    << "Press \"8\" to complete your order" << endl;
+    cin >> itemNumber;
+    while(itemNumber < 1 || itemNumber > 8){
+      cout << "Please enter a valid menu item number. ";
+      cin >> itemNumber;
+    }
+    switch(itemNumber) {
+        case 1: 
+            cout << "Cheeseburger added to order." << endl;      
+            cost = cost + 5;
+            break;
+        case 2:
+            cout << "Hot Dog added to order." << endl;
+            cost = cost + 2;
+            break;
+        case 3:
+            cout << "Pizza slice added to order." << endl;
+            cost = cost + 4;
+            break;
+        case 4:
+            cout << "Popcorn added to order." << endl;
+            cost = cost + 2;
+            break;
+        case 5:
+            cout << "French Fries added to order." << endl;
+            cost = cost + 2;
+            break;
+        case 6:        
+            cout << "Bottle of Water added to order." << endl;
+            cost = cost + 1;
+            break;
+        case 7:      
+            cout << "Coca-Cola added to order." << endl;
+            cost = cost + 2;
+            break;
+        case 8:
+            cout << "The total cost of your order is $" << cost << endl;
+            return 0;  
+    }
+    }   
+    
+    return 0;
+}
+
+
+int main() {
+    int options = 0;
+    while(options != 7){
+    cout << "\nEnter \"1\" to create an account." << endl
+    << "Enter \"2\" to login to an existing account." << endl
+    << "Enter \"3\" to view an account." << endl
+    << "Enter \"4\" to view the menu." << endl
+    << "Enter \"5\" to place an order." << endl
+    << "Enter \"6\" to view an order." << endl
+    << "Enter \"7\" to exit." << endl;
+    cin >> options;
+    while(options < 1 || options > 7){
+      cout << "Please enter a valid number. ";
+      cin >> options;
+    }
+    switch(options) {
+        case 1: 
+            createAccount();
+            break;
+        case 2:
+            
+        case 3:
+
+        case 4:
+            viewMenu();
+            break;
+        case 5:
+            placeOrder();
+            break;
+        case 6:        
+
+        case 7:
+            return 0;        
+    }
+    }
+}
