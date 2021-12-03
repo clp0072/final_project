@@ -19,6 +19,7 @@ class User
    string getEmail();
    string getUsername();
    string getPassword();
+   
 };
 
 User::User() {
@@ -60,6 +61,8 @@ string User::getPassword(){
 
 
 
+
+
 // checks to see if email is valid
 bool isChar(char c)
 {
@@ -93,7 +96,7 @@ bool is_valid(string email)
 } //end of email check
 
 
-void createAccount() {
+ void createAccount() {
     string username, email, password;
     vector<User> users;
     cout << "\n--Account Creation--" << endl;
@@ -111,8 +114,37 @@ void createAccount() {
     cin >> password;
     User user(email, username, password);
     users.push_back(user);
+    
     cout << "Account has been created.";
-}
+} 
+ void login(){
+    string Username, Password;
+    if (users.size() > 0) {
+        bool usernameFlag = false;
+        bool passwordFlag = false;
+        cout << "Username: ";
+        cin >> Username;
+        cout << "Password:";
+        cin >> Password;
+        for(int i = 0; i < users.size(); i++){
+          if(users[i].getUsername() == Username && users[i].getPassword() == Password){
+            cout << "Login successful.\n";
+            usernameFlag = true;
+            passwordFlag = true;
+            
+          }
+        }
+        if (usernameFlag == false || passwordFlag == false){
+          cout << "Username or password is incorrect.\n." << endl;
+        }
+        cout << endl;
+         
+    } else {
+        cout << "\nThere are no active accounts.\n";
+    }
+
+ } 
+
 void viewMenu(){
     cout << "\n----Menu----" << endl
     << "[1] $5 Cheeseburger" << endl
@@ -198,10 +230,14 @@ int main() {
     }
     switch(options) {
         case 1: 
-            createAccount();= 
+            createAccount();
             break;
+
+
         case 2:
-        
+            login();
+            break;
+
         case 3:
             
 
