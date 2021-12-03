@@ -2,7 +2,63 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include <cstring>
 using namespace std;
+
+
+class User
+{
+ private:
+   string email, username, password;
+ public:
+   User();
+   User(string newEmail, string newUsername, string newPassword);
+   void setEmail(string newEmail);
+   void setUsername(string newUsername);
+   void setPassword(string newPassword);
+   string getEmail();
+   string getUsername();
+   string getPassword();
+};
+
+User::User() {
+  email = "";
+  username = "";
+  password = "";
+  
+}
+
+User::User(string newEmail, string newUsername, string newPassword){
+  email = newEmail;
+  username = newUsername;
+  password = newPassword;
+}
+
+void User::setEmail(string newEmail){
+  email = newEmail;
+}
+
+void User::setUsername(string newUsername){
+  username = newUsername;
+}
+
+void User::setPassword(string newPassword){
+  password = newPassword;
+}
+
+string User::getEmail(){
+  return email;
+}
+
+string User::getUsername(){
+  return username;
+}
+
+string User::getPassword(){
+  return password;
+}
+
+
 
 // checks to see if email is valid
 bool isChar(char c)
@@ -39,6 +95,7 @@ bool is_valid(string email)
 
 void createAccount() {
     string username, email, password;
+    vector<User> users;
     cout << "\n--Account Creation--" << endl;
     cout << "Enter a username: " << endl;
     cin >> username;
@@ -52,8 +109,9 @@ void createAccount() {
     } 
     cout << "Create a password: " << endl;
     cin >> password;
+    User user(email, username, password);
+    users.push_back(user);
     cout << "Account has been created.";
-
 }
 void viewMenu(){
     cout << "\n----Menu----" << endl
@@ -127,7 +185,7 @@ int main() {
     int options = 0;
     while(options != 7){
     cout << "\nEnter \"1\" to create an account." << endl
-    << "Enter \"2\" to login to an existing account." << endl
+    << "Enter \"2\" to login." << endl
     << "Enter \"3\" to view an account." << endl
     << "Enter \"4\" to view the menu." << endl
     << "Enter \"5\" to place an order." << endl
@@ -140,11 +198,12 @@ int main() {
     }
     switch(options) {
         case 1: 
-            createAccount();
+            createAccount();= 
             break;
         case 2:
-            
+        
         case 3:
+            
 
         case 4:
             viewMenu();
