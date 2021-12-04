@@ -75,8 +75,8 @@ void viewMenu(){
     << "[6] $1 Bottle of Water" << endl
     << "[7] $2 Coca-Cola" << endl;
 }
-
-/*int placeOrder(){
+/*
+int placeOrder(){
     std::string Order[100];
     int itemNumber = 0;
     int cost = 0;
@@ -143,6 +143,7 @@ void viewMenu(){
     return 0;
 }
 */
+
 //void viewOrders(){
 //    cout << Order;
 //}
@@ -180,15 +181,18 @@ int main() {
     string AdminUsername="Admin123",AdminPassword="Admin123",adminUsername, adminPassword;
     string username, email, password;
     string Username, Password;
-    vector<User> users;
+    std::vector<std::string> users;
+    std::string user;
+    //vector<User> users;
     std::string Users[1000];
-    User user(email, username, password);
+    //User user(email, username, password);
     std::string Order[100];
     int itemNumber = 0;
     int cost = 0;
     int x = 0;
     int a = 0;
     int b = 0;
+    int y = 0;
     
 
     while(options != 6){
@@ -208,17 +212,21 @@ int main() {
                   
           cout << "\n--Account Creation--" << endl;
           cout << "Enter a username: " << endl;
-          cin >> username;
-          Users[b] = username;
-          b++;
+          cin >> Users[y];
+          y++;
+          Users[y] = "\n";
+          y++;
           cout << "Enter an email address: " << endl;
-          cin >> email;
-          Users[b] = email;
-          b++;
+          cin >> Users[y];          
+          y++;
+          Users[y] = "\n";
+          y++;
           cout << "Create a password: " << endl;
-          cin >> password;
-          Users[b] = password; 
-          b++;        
+          cin >> Users[y];
+          y++; 
+          Users[y] = "\n";
+          y++;
+          //while(std::cin >> user)    
           //users.push_back(user);          
           //numUsers++;
           cout << "Account has been created.";
@@ -227,7 +235,7 @@ int main() {
 
         case 2:
             
-              if (users.size() > 0) {
+              /*if (users.size() > 0) {
                   bool usernameFlag = false;
                   bool passwordFlag = false;
                   cout << "Username: ";
@@ -249,7 +257,7 @@ int main() {
                   
               } else {
                   cout << "\nThere are no active accounts.\n";
-              } 
+              } */
                       break;
 
         case 3:
@@ -275,8 +283,11 @@ int main() {
                         }
                         switch(options) {
                             case 1: 
-                                cout << "Account view" << endl;
-                                viewAccounts(numUsers, users);
+                                cout << "Account view:\n" << endl;
+                                while(b <= y){
+                                  cout << Users[b];
+                                  b++;
+                                }
                                 break;
                             case 2:
                                 cout << "Order view" << endl;
