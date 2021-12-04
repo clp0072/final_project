@@ -132,7 +132,7 @@ int placeOrder(){
     return 0;
 }
 
-/*void vieworders(int numOrders, vector<Orders> orders)
+/*void vieworders(int numOrders, vector<User> orders)
 {
   if (numOrders > 0) {
     cout << "\nOrders: " << endl;
@@ -194,7 +194,6 @@ int main() {
           numUsers++;
           cout << "Account has been created.";
           break;
-
 
         case 2:
             
