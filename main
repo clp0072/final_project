@@ -76,76 +76,7 @@ void viewMenu(){
     << "[7] $2 Coca-Cola" << endl;
 }
 
-int placeOrder(){
-    int itemNumber = 0;
-    int cost = 0;
-    while(itemNumber != 8){
-    cout << "Enter an item number to add to your order." << endl
-    << "[1] $5 Cheeseburger" << endl
-    << "[2] $2 Hot Dog" << endl
-    << "[3] $4 Pizza Slice" << endl
-    << "[4] $2 Popcorn" << endl
-    << "[5] $2 French Fries" << endl
-    << "[6] $1 Bottle of Water" << endl
-    << "[7] $2 Coca-Cola" << endl
-    << "Press \"8\" to complete your order" << endl;
-    cin >> itemNumber;
-    while(itemNumber < 1 || itemNumber > 8){
-      cout << "Please enter a valid menu item number. ";
-      cin >> itemNumber;
-    }
-    switch(itemNumber) {
-        case 1: 
-            cout << "Cheeseburger added to order." << endl;      
-            cost = cost + 5;
-            break;
-        case 2:
-            cout << "Hot Dog added to order." << endl;
-            cost = cost + 2;
-            break;
-        case 3:
-            cout << "Pizza slice added to order." << endl;
-            cost = cost + 4;
-            break;
-        case 4:
-            cout << "Popcorn added to order." << endl;
-            cost = cost + 2;
-            break;
-        case 5:
-            cout << "French Fries added to order." << endl;
-            cost = cost + 2;
-            break;
-        case 6:        
-            cout << "Bottle of Water added to order." << endl;
-            cost = cost + 1;
-            break;
-        case 7:      
-            cout << "Coca-Cola added to order." << endl;
-            cost = cost + 2;
-            break;
-        case 8:
-            cout << "The total cost of your order is $" << cost << endl;
-            return 0;  
-    }
-    }   
-    
-    return 0;
-}
 
-/*void vieworders(int numOrders, vector<User> orders)
-{
-  if (numOrders > 0) {
-    cout << "\nOrders: " << endl;
-    for (int i = 0; i < numOrders; i++) 
-    {
-      cout << orders[i].getOrder() << " " << orders[i].getCost() << endl; 
-    }
-  }
-  else {
-    cout << "\nNo orders have been placed.\n";
-  }
-}
-*/
 void viewAccounts(int numUsers, vector<User> users)
 {
   if (numUsers > 0) {
@@ -166,7 +97,15 @@ int main() {
     string username, email, password;
     string Username, Password;
     vector<User> users;
+    std::string Users[1000];
     User user(email, username, password);
+    std::string Order[100];
+    int itemNumber = 0;
+    int cost = 0;
+    int x = 0;
+    int a = 0;
+    int b = 0;
+    
 
     while(options != 6){
     cout << "\nEnter \"1\" to create an account." << endl
@@ -186,14 +125,21 @@ int main() {
           cout << "\n--Account Creation--" << endl;
           cout << "Enter a username: " << endl;
           cin >> username;
+          Users[b] = username;
+          b++;
           cout << "Enter an email address: " << endl;
           cin >> email;
+          Users[b] = email;
+          b++;
           cout << "Create a password: " << endl;
-          cin >> password;         
-          users.push_back(user);          
-          numUsers++;
+          cin >> password;
+          Users[b] = password; 
+          b++;        
+          //users.push_back(user);          
+          //numUsers++;
           cout << "Account has been created.";
           break;
+
 
         case 2:
             
@@ -250,7 +196,10 @@ int main() {
                                 break;
                             case 2:
                                 cout << "Order view" << endl;
-                                //viewOrders();
+                                while(a <= x){
+                                  cout << Order[a];
+                                  a++;
+                                }
                             case 3: 
                                 break;
                                 
@@ -265,10 +214,70 @@ int main() {
             break;
 
         case 5:
-            placeOrder();
+            //placeOrder();
+            
+            while(itemNumber != 8){
+              cout << "Enter an item number to add to your order." << endl
+              << "[1] $5 Cheeseburger" << endl
+              << "[2] $2 Hot Dog" << endl
+              << "[3] $4 Pizza Slice" << endl
+              << "[4] $2 Popcorn" << endl
+              << "[5] $2 French Fries" << endl
+              << "[6] $1 Bottle of Water" << endl
+              << "[7] $2 Coca-Cola" << endl
+              << "Press \"8\" to complete your order" << endl;
+              cin >> itemNumber;
+              while(itemNumber < 1 || itemNumber > 8){
+                  cout << "Please enter a valid menu item number. ";
+                  cin >> itemNumber;
+              }
+              Order[x++];
+              switch(itemNumber) {
+                case 1: 
+                    cout << "Cheeseburger added to order." << endl;      
+                    cost = cost + 5;
+                    Order[x] = "Cheeseburger\n";
+                    break;
+                case 2:
+                    cout << "Hot Dog added to order." << endl;
+                    cost = cost + 2;
+                    Order[x] = "Hot Dog\n" ;
+                    break;
+                case 3:
+                    cout << "Pizza slice added to order." << endl;
+                    cost = cost + 4;
+                    Order[x] = "Pizza\n";
+                    break;
+                case 4:
+                    cout << "Popcorn added to order." << endl;
+                    cost = cost + 2;
+                    Order[x] = "Popcorn\n";
+                    break;
+                case 5:
+                    cout << "French Fries added to order." << endl;
+                    cost = cost + 2;
+                    Order[x] = "French Fries\n";
+                    break;
+                case 6:        
+                    cout << "Bottle of Water added to order." << endl;
+                    cost = cost + 1;
+                    Order[x] = "Bottle of Water\n";
+                    break;
+                case 7:      
+                    cout << "Coca-Cola added to order." << endl;
+                    cost = cost + 2;
+                    Order[x] = "Coca-Cola\n";
+                    break;
+                case 8:
+                    cout << "The total cost of your order is $" << cost << endl;
+                    Order[x] = "\n";
+                      
+              }
+            }
             break;
         case 6:
             return 0;
-    }
+        }
     }
 }
+
